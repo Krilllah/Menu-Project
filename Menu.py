@@ -1,3 +1,6 @@
+from Ingredient_Repository import Ingredient_Repo
+from Dish import Dish
+
 class Menu:
     def __init__(self, dishes=[]):
         self.dishes = dishes
@@ -10,11 +13,15 @@ class Menu:
             if self.dishes[i].name == name:
                 self.dishes.remove(self.dishes[i])
 
-    def check_dish_existance(self, name):
+    def check_dish_existance(self, name, repo):
         for the_dish in self.dishes:
             if the_dish.name == name:
-                return the_dish
-        print("There is no such dish")
+                if repo.possibility_of_cooking_dish(the_dish.content):
+                    return the_dish
+                else:
+                    print("Sorry, we are not able to cook this dish at the moment.")
+            else:
+                print("There is no such dish.")
         return None
 
     def printMenu(self):
