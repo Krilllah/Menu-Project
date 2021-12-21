@@ -2,7 +2,9 @@ from Ingredients import Ingredient
 
 
 class Ingredient_Repo:
-    def __init__(self, ingredients={}):
+    def __init__(self, ingredients=None):
+        if ingredients is None:
+            ingredients = {}
         self.ingredients = ingredients
 
     def addIngredient(self, ingredient, amount):
@@ -21,4 +23,10 @@ class Ingredient_Repo:
             print(f"    calories: {ingredient.calories}")
             print(f"    price: {ingredient.price}")
             print(f"    amount: {self.ingredients[ingredient]}")
+            print()
 
+    def check_ingredient_existance(self, name):
+        for the_ingr in self.ingredients.keys():
+            if the_ingr.name == name:
+                return the_ingr
+        return None
