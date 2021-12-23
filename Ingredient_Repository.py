@@ -30,3 +30,17 @@ class Ingredient_Repo:
             if the_ingr.name == name:
                 return the_ingr
         return None
+
+    def possibility_of_cooking_dish(self, content):
+        done = True
+        check = 0
+        for i in content:
+            if i not in self.ingredients.keys():
+                done = False
+                break
+            check += self.ingredients[i[0]]
+            check -= i[1]
+            if check < 0:
+                done = False
+                break
+        return done

@@ -34,7 +34,11 @@ while True:
         mass = int(input())
         print("Enter category:")
         category = input()
-        dish = Dish(name, price, mass, category)
+        content = input("Enter content:\n").split(', ')
+        dish = Dish(name, price, mass, category, [[Ingredient(i.split(';')[0].split('.')[0],
+                                                              i.split(';')[0].split('.')[1],
+                                                              i.split(';')[0].split('.')[2]),
+                                                   i.split(';')[1]] for i in content])
         menu.addDish(dish)
     elif command == 'remove':
         print("Enter name:")
@@ -44,7 +48,7 @@ while True:
         menu.printMenu()
     elif command == 'gimme':
         name = input("Enter name:\n")
-        the_dish = menu.check_dish_existance(name)
+        the_dish = menu.check_dish_existance(name, storage)
         if the_dish is not None:
             print(f'''Your dish:
         & {str(the_dish.name).capitalize()} &
