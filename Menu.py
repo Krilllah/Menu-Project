@@ -34,3 +34,6 @@ class Menu:
             print(f"    price: {dish.price}")
             print(f"    mass: {dish.mass}гр")
             print(f"    category: {dish.category}")
+            print("       content:")
+            for i in dish.content:
+                print(f"    {i[0].name}, {i[0].calories}, {i[0].price} - {i[1]}")

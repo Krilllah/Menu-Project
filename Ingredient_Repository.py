@@ -33,12 +33,12 @@ class Ingredient_Repo:
 
     def possibility_of_cooking_dish(self, content):
         done = True
-        check = 0
         for i in content:
-            if i not in self.ingredients.keys():
+            check = 0
+            if self.check_ingredient_existance(i[0].name) is None:
                 done = False
                 break
-            check += self.ingredients[i[0]]
+            check += int(self.ingredients[self.check_ingredient_existance(i[0].name)])
             check -= i[1]
             if check < 0:
                 done = False
